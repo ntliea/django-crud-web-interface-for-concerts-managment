@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'concerts/style.css' %}">
+    <title>Афиша</title>
+</head>
+<body>
+    <header>
+        <a class = 'header_link' href='/admin/'> Администратору </a>
+    </header>
+    <div class="content">
+        <h2 class="sitetitle"> Концерты в Москве </h2>
+        {% if concerts_list %}
+        <ul>
+        {% for concert in concerts_list %}
+            <li>
+                <div class="concertcard">
+                    <a class='concert_href' href="{% url 'concerts:detail' concert.id %}">{{ concert.name }}</a>
+                    <img class="concert_img" src ="{% static 'concerts/images/' %}img{{concert.id}}.jpg" alt="Concert Picture">
+                    <div class="concert_info">
+                        {% for artist in artists_list %}
+                            {% if artist.id == concert.artist_id %}
+                                <p> Артист - {{artist.name}} </p>
+                                <!-- когда найден артист то по его айди находим его жанр -->
+                                {% for genre in genres_list %}
+                                    {% if genre.id == artist.genre_id %}
+                                        <p> Жанр - {{genre.name}} </p>
+                                    {% endif %}
+                                {% endfor %}
+                            {% endif %}
+                        {% endfor %}
+                        <p> Дата - {{concert.date}} </p>
+                        <p> Описание - {{concert.description}} </p>
+                        {% for place in places_list %}
+                            {% if place.id == concert.place_id %}
+                                <p> Площадка - {{place.name}} </p>
+                                <p> Адрес - {{place.location}} </p>
+                                <p> Вместимость - {{place.capacity}} </p>
+                                <!-- когда найдена площадка находим ее тип  -->
+                                {% for type in typesofplaces_list %}
+                                    {% if type.id == place.type_id %}
+                                        <p> Тип площадки - {{type.type}} </p>
+                                    {% endif %}
+                                {% endfor %}
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                </div>
+            </li>
+        {% endfor %}
+        </ul>
+        {% else %}
+            <p> Концерты не найдены </p>
+        {% endif %}
+    </div>
+</body>
+</html>

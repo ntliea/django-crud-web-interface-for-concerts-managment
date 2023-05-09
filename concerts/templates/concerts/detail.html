@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'concerts/style.css' %}">
+    <title>Details</title>
+</head>
+<body>
+<div class="detail_content">
+    <h1> {{concert.name}} </h1>
+    <img class="concert_img" src ="{% static 'concerts/images/' %}img{{concert.id}}.jpg" alt="Concert Picture">
+    <div class="detail_info">
+        <p> Выступает - {{artist.name}} </p>
+        <p> Дата - {{concert.date}} </p>
+        <p> Описание концерта - {{concert.description}} </p>
+        <p> Место проведения - {{place.name}} </p>
+        <p> Адрес - {{place.location}} </p>
+        <p> Вместимость - {{place.capacity}} </p>
+        <p> Тип площадки - {{typeofplace.type}} </p>
+    </div>
+</div>
+</body>
+</html>
