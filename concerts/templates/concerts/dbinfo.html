@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Информация о базе данных</title>
+</head>
+<body>
+<h1> Таблицы в базе данных concerts(концерты): </h1>
+<ul>
+  <li><a href="{% url 'concerts:add_genre' %}"> Жанры </a></li> <br>
+  <li><a href="{% url 'concerts:add_artist' %}"> Артисты </a></li> <br>
+  <li><a href="{% url 'concerts:add_typeofplace' %}"> Типы площадок </a></li> <br>
+  <li><a href="{% url 'concerts:add_place' %}"> Площадки </a></li> <br>
+  <li><a href="{% url 'concerts:add_concert' %}"> Концерты </a></li> <br>
+</ul>
+</body>
+</html>

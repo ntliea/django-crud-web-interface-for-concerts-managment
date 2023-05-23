@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Удалить</title>
+</head>
+<body>
+<p> Вы хотите удалить артиста "{{artist.name}}" ?</p>
+
+<form method="POST" action="{% url 'concerts:delete_artist' artist.id%}">
+
+  {% csrf_token %}
+
+  <a href="{% url 'concerts:add_artist' %}">Отмена, вернуться обратно</a> <br><br>
+  <input type="submit" name="confirm" value="удалить">
+</form>
+</body>
+</html>

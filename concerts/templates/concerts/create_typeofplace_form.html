@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Добавление записи в базу данных</title>
+</head>
+<body>
+<a href="{% url 'concerts:db_info' %}"> Обратно к списку таблиц</a>
+<br>
+<h3>Добавить запись в таблицу виды площадок</h3>
+
+<form method="post" action="{% url 'concerts:add_typeofplace' %}" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{form}}
+    <button> добавить </button>
+</form>
+
+<br>
+<h3> Записи в таблице typesofplaces (типы площадок) </h3>
+{% if typesofplaces_list %}
+        <ul>
+        {% for typeofplace in typesofplaces_list %}
+            <li> id - {{typeofplace.id}} <br>
+                тип - {{typeofplace.type}} <br>
+                <a href="{% url 'concerts:update_typeofplace' typeofplace.id %}"> Изменить </a> <br>
+                <a href="{% url 'concerts:delete_typeofplace' typeofplace.id %}"> Удалить </a> <br>
+            </li>
+            <br>
+            <br>
+        {% endfor %}
+        </ul>
+{% endif %}
+</body>
+</html>

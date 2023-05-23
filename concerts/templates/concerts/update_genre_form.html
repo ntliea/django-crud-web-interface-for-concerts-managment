@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Редактировать</title>
+</head>
+<body>
+
+{% if genre %}
+    <p>
+        Изменить жанр {{genre.name}}
+    </p>
+{% endif %}
+
+  <h3>Изменить запись</h3>
+  <form method="post" action="{% url 'concerts:update_genre' genre.id %}" enctype="multipart/form-data">
+      {% csrf_token %}
+      {{form}}
+      <button> изменить </button>
+  </form>
+
+</body>
+</html>

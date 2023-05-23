@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Добавление записи в базу данных</title>
+</head>
+<body>
+<a href="{% url 'concerts:db_info' %}"> Обратно к списку таблиц</a>
+<br>
+<h3>Добавить запись в таблицу артисты</h3>
+
+<form method="post" action="{% url 'concerts:add_artist' %}" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{form}}
+    <button> добавить </button>
+</form>
+
+<br>
+<h3> Записи в таблице artists (артисты) </h3>
+{% if artists_list %}
+        <ul>
+        {% for artist in artists_list %}
+            <li> id - {{artist.id}} <br>
+                имя - {{artist.name}} <br>
+                id жанра - {{artist.genre_id}} <br>
+                <a href="{% url 'concerts:update_artist' artist.id %}"> Изменить </a> <br>
+                <a href="{% url 'concerts:delete_artist' artist.id %}"> Удалить </a> <br>
+            </li>
+            <br>
+            <br>
+        {% endfor %}
+        </ul>
+{% endif %}
+</body>
+</html>
